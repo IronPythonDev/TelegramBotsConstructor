@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=1111
+    ports:
+      - '5432:5432'
+    volumes: 
+      - postgresql-volume:/var/lib/postgresql/data
+  ironpython.web:
+    container_name: web
+    image: ${DOCKER_REGISTRY-}ironpythonweb
+    depends_on:
+      - postgres
+    ports:
+      - '5000:80'
+      - '5001:443'
+    build:
+      context: .
+      dockerfile: src/IronPython.Web/Dockerfile
+
+volumes:
+  postgresql-volume:
