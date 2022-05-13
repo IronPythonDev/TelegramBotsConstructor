@@ -8,7 +8,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=1111
     ports:
-      - '5432:5432'
+      - '5434:5432'
     volumes: 
       - postgresql-volume:/var/lib/postgresql/data
   ironpython.web:

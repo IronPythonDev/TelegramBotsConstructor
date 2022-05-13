@@ -12,7 +12,11 @@ namespace IronPython.Authorization
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AuthorizationContext>(p => p.UseNpgsql("Host=postgres;Database=ironpython.co;Username=postgres;Password=1111"));
+            services.AddDbContext<AuthorizationContext>(p => p
+                .UseNpgsql("Host=postgres;Port=5432;Database=ironpython.co;Username=postgres;Password=postgres;", 
+                           p => p.MigrationsAssembly("IronPython.Migrator.Authorization")));
+
+            services.BuildServiceProvider().GetRequiredService<AuthorizationContext>().Database.Migrate();
 
             return null!;
         }
