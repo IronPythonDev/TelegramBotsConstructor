@@ -17,7 +17,7 @@ namespace IronPython.Authorization.Controllers
         [HttpPost("withGoogle")]
         public IActionResult WithGoogle()
         {
-            return Ok();
+            return Ok(AuthorizationContext.Users.ToList());
         }
     }
 }

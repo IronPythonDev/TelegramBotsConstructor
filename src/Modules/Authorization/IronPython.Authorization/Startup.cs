@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace IronPython.Authorization
@@ -12,9 +13,10 @@ namespace IronPython.Authorization
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            var configuration = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+
             services.AddDbContext<AuthorizationContext>(p => p
-                .UseNpgsql("Host=postgres;Port=5432;Database=ironpython.co;Username=postgres;Password=postgres;", 
-                           p => p.MigrationsAssembly("IronPython.Migrator.Authorization")));
+                .UseNpgsql(configuration.GetConnectionString("Postgres"), p => p.MigrationsAssembly("IronPython.Migrator.Authorization")));
 
             services.BuildServiceProvider().GetRequiredService<AuthorizationContext>().Database.Migrate();
 
