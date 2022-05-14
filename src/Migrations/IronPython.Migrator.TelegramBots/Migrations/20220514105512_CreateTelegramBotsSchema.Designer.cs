@@ -13,13 +13,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IronPython.Migrator.TelegramBots.Migrations
 {
     [DbContext(typeof(TelegramBotsContext))]
-    [Migration("20220514101032_CreateTelegramBotsTable")]
-    partial class CreateTelegramBotsTable
+    [Migration("20220514105512_CreateTelegramBotsSchema")]
+    partial class CreateTelegramBotsSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("telegramBots")
                 .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
@@ -41,7 +42,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TelegramBots", (string)null);
+                    b.ToTable("TelegramBots", "telegramBots");
                 });
 
             modelBuilder.Entity("IronPython.TelegramBots.Core.Domain.TelegramBotAction", b =>
@@ -65,7 +66,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
                     b.HasIndex("TelegramBotId");
 
-                    b.ToTable("TelegramBotsActions", (string)null);
+                    b.ToTable("TelegramBotsActions", "telegramBots");
                 });
 
             modelBuilder.Entity("IronPython.TelegramBots.Core.Domain.TelegramBotActionTask", b =>
@@ -91,7 +92,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
                     b.HasIndex("TelegramBotActionId");
 
-                    b.ToTable("TelegramBotsActionTasks", (string)null);
+                    b.ToTable("TelegramBotsActionTasks", "telegramBots");
                 });
 
             modelBuilder.Entity("IronPython.TelegramBots.Core.Domain.TelegramBotActionTrigger", b =>
@@ -117,7 +118,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
                     b.HasIndex("TelegramBotActionId");
 
-                    b.ToTable("TelegramBotsActionTriggers", (string)null);
+                    b.ToTable("TelegramBotsActionTriggers", "telegramBots");
                 });
 
             modelBuilder.Entity("IronPython.TelegramBots.Core.Domain.TelegramBotOwner", b =>
@@ -137,7 +138,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
                     b.HasIndex("TelegramBotId");
 
-                    b.ToTable("TelegramBotsOwners", (string)null);
+                    b.ToTable("TelegramBotsOwners", "telegramBots");
                 });
 
             modelBuilder.Entity("IronPython.TelegramBots.Core.Domain.TelegramBotAction", b =>

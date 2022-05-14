@@ -1,16 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace IronPython.Migrator.TelegramBots.Migrations
 {
-    public partial class CreateTelegramBotsTable : Migration
+    public partial class CreateTelegramBotsSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "telegramBots");
+
             migrationBuilder.CreateTable(
                 name: "TelegramBots",
+                schema: "telegramBots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
@@ -23,6 +28,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
             migrationBuilder.CreateTable(
                 name: "TelegramBotsActions",
+                schema: "telegramBots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
@@ -35,6 +41,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
                     table.ForeignKey(
                         name: "FK_TelegramBotsActions_TelegramBots_TelegramBotId",
                         column: x => x.TelegramBotId,
+                        principalSchema: "telegramBots",
                         principalTable: "TelegramBots",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -42,6 +49,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
             migrationBuilder.CreateTable(
                 name: "TelegramBotsOwners",
+                schema: "telegramBots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
@@ -54,6 +62,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
                     table.ForeignKey(
                         name: "FK_TelegramBotsOwners_TelegramBots_TelegramBotId",
                         column: x => x.TelegramBotId,
+                        principalSchema: "telegramBots",
                         principalTable: "TelegramBots",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -61,6 +70,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
             migrationBuilder.CreateTable(
                 name: "TelegramBotsActionTasks",
+                schema: "telegramBots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
@@ -74,6 +84,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
                     table.ForeignKey(
                         name: "FK_TelegramBotsActionTasks_TelegramBotsActions_TelegramBotActi~",
                         column: x => x.TelegramBotActionId,
+                        principalSchema: "telegramBots",
                         principalTable: "TelegramBotsActions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -81,6 +92,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
             migrationBuilder.CreateTable(
                 name: "TelegramBotsActionTriggers",
+                schema: "telegramBots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
@@ -94,6 +106,7 @@ namespace IronPython.Migrator.TelegramBots.Migrations
                     table.ForeignKey(
                         name: "FK_TelegramBotsActionTriggers_TelegramBotsActions_TelegramBotA~",
                         column: x => x.TelegramBotActionId,
+                        principalSchema: "telegramBots",
                         principalTable: "TelegramBotsActions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -101,21 +114,25 @@ namespace IronPython.Migrator.TelegramBots.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_TelegramBotsActions_TelegramBotId",
+                schema: "telegramBots",
                 table: "TelegramBotsActions",
                 column: "TelegramBotId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TelegramBotsActionTasks_TelegramBotActionId",
+                schema: "telegramBots",
                 table: "TelegramBotsActionTasks",
                 column: "TelegramBotActionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TelegramBotsActionTriggers_TelegramBotActionId",
+                schema: "telegramBots",
                 table: "TelegramBotsActionTriggers",
                 column: "TelegramBotActionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TelegramBotsOwners_TelegramBotId",
+                schema: "telegramBots",
                 table: "TelegramBotsOwners",
                 column: "TelegramBotId");
         }
@@ -123,19 +140,24 @@ namespace IronPython.Migrator.TelegramBots.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TelegramBotsActionTasks");
+                name: "TelegramBotsActionTasks",
+                schema: "telegramBots");
 
             migrationBuilder.DropTable(
-                name: "TelegramBotsActionTriggers");
+                name: "TelegramBotsActionTriggers",
+                schema: "telegramBots");
 
             migrationBuilder.DropTable(
-                name: "TelegramBotsOwners");
+                name: "TelegramBotsOwners",
+                schema: "telegramBots");
 
             migrationBuilder.DropTable(
-                name: "TelegramBotsActions");
+                name: "TelegramBotsActions",
+                schema: "telegramBots");
 
             migrationBuilder.DropTable(
-                name: "TelegramBots");
+                name: "TelegramBots",
+                schema: "telegramBots");
         }
     }
 }

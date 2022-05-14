@@ -11,6 +11,8 @@ namespace IronPython.Authorization.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("authorization");
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("Users");

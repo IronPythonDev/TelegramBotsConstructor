@@ -1,15 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace IronPython.Migrator.Authorization.Migrations
 {
-    public partial class CreateUserTable : Migration
+    public partial class CreateUserTableAndAuthorizationSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "authorization");
+
             migrationBuilder.CreateTable(
                 name: "Users",
+                schema: "authorization",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
@@ -25,7 +30,8 @@ namespace IronPython.Migrator.Authorization.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Users",
+                schema: "authorization");
         }
     }
 }

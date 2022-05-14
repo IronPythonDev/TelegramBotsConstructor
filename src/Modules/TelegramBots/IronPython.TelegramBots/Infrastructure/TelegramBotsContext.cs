@@ -15,6 +15,8 @@ namespace IronPython.TelegramBots.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultSchema("telegramBots");
+
             modelBuilder.Entity<TelegramBot>(entity =>
             {
                 entity.ToTable("TelegramBots");

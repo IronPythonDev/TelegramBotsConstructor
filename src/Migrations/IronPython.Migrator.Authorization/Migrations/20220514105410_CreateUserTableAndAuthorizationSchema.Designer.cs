@@ -12,19 +12,20 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IronPython.Migrator.Authorization.Migrations
 {
     [DbContext(typeof(AuthorizationContext))]
-    [Migration("20220513193227_CreateUserTable")]
-    partial class CreateUserTable
+    [Migration("20220514105410_CreateUserTableAndAuthorizationSchema")]
+    partial class CreateUserTableAndAuthorizationSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("authorization")
                 .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("IronPython.Core.Entities.User", b =>
+            modelBuilder.Entity("IronPython.Authorization.Core.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +44,7 @@ namespace IronPython.Migrator.Authorization.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", "authorization");
                 });
 #pragma warning restore 612, 618
         }

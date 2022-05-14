@@ -17,12 +17,13 @@ namespace IronPython.Migrator.Authorization.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("authorization")
                 .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("IronPython.Core.Entities.User", b =>
+            modelBuilder.Entity("IronPython.Authorization.Core.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +42,7 @@ namespace IronPython.Migrator.Authorization.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", "authorization");
                 });
 #pragma warning restore 612, 618
         }
