@@ -1,4 +1,4 @@
-﻿namespace IronPython.Core.Entities
+﻿namespace IronPython.Authorization.Core.Domain
 {
     public class User
     {

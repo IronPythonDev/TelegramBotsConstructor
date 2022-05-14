@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Migrations\IronPython.Migrator.Authorization\IronPython.Migrator.Authorization.csproj" />
+    <ProjectReference Include="..\Migrations\IronPython.Migrator.TelegramBots\IronPython.Migrator.TelegramBots.csproj" />
     <ProjectReference Include="..\Modules\Authorization\IronPython.Authorization\IronPython.Authorization.csproj" />
     <ProjectReference Include="..\Modules\TelegramBots\IronPython.TelegramBots\IronPython.TelegramBots.csproj" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using IronPython.Core.Entities;
+﻿using IronPython.Authorization.Core.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace IronPython.Authorization.Infrastructure
