@@ -16,6 +16,7 @@ void RegisterModule(Type startupType)
     builder.Services.AddControllers().AddApplicationPart(startupType.Assembly);
 }
 
+builder.Services.AddHttpClient();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
