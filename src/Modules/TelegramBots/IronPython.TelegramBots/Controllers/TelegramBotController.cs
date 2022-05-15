@@ -21,7 +21,7 @@ namespace IronPython.TelegramBots.Controllers
             return Ok();
         }
 
-        [HttpGet("GetTelegramBotsWithLimitAndOffset")]
+        [HttpGet("GetTelegramBotsWithLimitAndOffset"), Authorize]
         public IActionResult GetTelegramBotsWithLimitAndOffset([FromQuery] int limit, [FromQuery] int offset)
         {
             return Ok();
