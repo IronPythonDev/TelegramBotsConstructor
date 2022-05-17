@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis" Version="1.57.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
@@ -19,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\IronPython.Core\IronPython.Core.csproj" />
     <ProjectReference Include="..\IronPython.Authorization.Core\IronPython.Authorization.Core.csproj" />
   </ItemGroup>
 
