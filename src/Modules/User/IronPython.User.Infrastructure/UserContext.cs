@@ -4,7 +4,7 @@ namespace IronPython.User.Infrastructure
 {
     public class UserContext : DbContext
     {
-        public DbSet<User.Domain.User> Users { get; set; }
+        public DbSet<User.Domain.Entities.User> Users { get; set; }
 
         public UserContext(DbContextOptions<UserContext> options) : base(options) { }
 
@@ -12,7 +12,7 @@ namespace IronPython.User.Infrastructure
         {
             modelBuilder.HasDefaultSchema("user");
 
-            modelBuilder.Entity<User.Domain.User>(entity =>
+            modelBuilder.Entity<User.Domain.Entities.User>(entity =>
             {
                 entity.ToTable("Users");
                 entity.Property(p => p.Id).HasDefaultValueSql("gen_random_uuid()");

@@ -1,6 +1,8 @@
-using IronPython.Authorization.Infrastructure;
 using IronPython.TelegramBots.Infrastructure;
+using IronPython.User.Application.QueryHandlers;
+using IronPython.User.Domain;
 using IronPython.User.Infrastructure;
+using IronPython.User.Infrastructure.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -10,19 +12,13 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-void RegisterModule(Type startupType)
-{
-    var startupInstance = (IStartup)Activator.CreateInstance(startupType)!;
-
-    startupInstance.ConfigureServices(builder!.Services);
-
-    builder.Services.AddControllers().AddApplicationPart(startupType.Assembly);
-}
 
 builder.Services.AddHttpClient();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddMediatR(typeof(CreateUserQueryHandler).Assembly);
+builder.Services.AddAutoMapper(typeof(IronPython.User.Infrastructure.Mappers.UserProfile).Assembly);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

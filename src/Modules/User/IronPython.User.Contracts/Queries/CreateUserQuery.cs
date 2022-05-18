@@ -1,14 +1,14 @@
 ﻿using MediatR;
 
-namespace IronPython.User.Contracts
+namespace IronPython.User.Contracts.Queries
 {
-    public class CreateUserQuery : IRequest
+    public class CreateUserQuery : IRequest<UserDTO>
     {
-        public CreateUserQuery(Domain.User user)
+        public CreateUserQuery(CreateUserDTO user)
         {
             User=user;
         }
 
-        public Domain.User User { get; }
+        public CreateUserDTO User { get; }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace IronPython.User.Domain
+﻿using IronPython.Domain;
+
+namespace IronPython.User.Domain
 {
-    public class IUserRepository
+    public interface IUserRepository : IRepository<Domain.Entities.User>
     {
     }
 }
