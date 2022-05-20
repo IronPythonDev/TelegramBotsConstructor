@@ -12,8 +12,10 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -25,10 +27,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Framework\IronPython.Infrastructure\IronPython.Infrastructure.csproj" />
-    <ProjectReference Include="..\Migrations\IronPython.Migrator.Authorization\IronPython.Migrator.Authorization.csproj" />
     <ProjectReference Include="..\Migrations\IronPython.Migrator.TelegramBots\IronPython.Migrator.TelegramBots.csproj" />
     <ProjectReference Include="..\Migrations\IronPython.Migrator.User\IronPython.Migrator.User.csproj" />
-    <ProjectReference Include="..\Modules\Authorization\IronPython.Authorization\IronPython.Authorization.csproj" />
     <ProjectReference Include="..\Modules\TelegramBots\IronPython.TelegramBots\IronPython.TelegramBots.csproj" />
     <ProjectReference Include="..\Modules\User\IronPython.User.Application\IronPython.User.Application.csproj" />
     <ProjectReference Include="..\Modules\User\IronPython.User.Infrastructure\IronPython.User.Infrastructure.csproj" />

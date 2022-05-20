@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace IronPython.User.Contracts
+namespace IronPython.User.Contracts.DTOs
 {
     public class CreateUserDTO
     {

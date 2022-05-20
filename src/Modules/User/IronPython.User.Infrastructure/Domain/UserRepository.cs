@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IronPython.User.Infrastructure.Domain
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository, IDisposable
+
     {
         public UserRepository(UserContext context)
         {
@@ -28,9 +29,28 @@ namespace IronPython.User.Infrastructure.Domain
             await Context.SaveChangesAsync();
         }
 
+        public void Dispose()
+        {
+            Context?.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         public async Task<User.Domain.Entities.User> GetByIdAsync(Guid id)
         {
             return await Context.Users.FirstAsync(p => p.Id == id);
+        }
+
+        public async Task<User.Domain.Entities.User> GetUserByEmailAsync(string email) =>
+            await Context.Users.FirstAsync(p => p.Email == email);
+
+        public Task RegenerateRefreshTokenForUserAsync(User.Domain.Entities.User user)
+        {
+            Context.Users.FromSqlRaw(@"UPDATE ""user"".""Users"" SET ""RefreshToken""=md5(random()::text) WHERE ""Id"" = @id;", new
+            {
+                id = user.Id,
+            });
+
+            return Task.CompletedTask;
         }
 
         public async Task UpdateAsync(User.Domain.Entities.User entity)

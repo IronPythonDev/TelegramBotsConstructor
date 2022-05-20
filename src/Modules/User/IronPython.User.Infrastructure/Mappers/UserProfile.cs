@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using IronPython.User.Contracts;
+using IronPython.User.Contracts.DTOs;
 
 namespace IronPython.User.Infrastructure.Mappers
 {

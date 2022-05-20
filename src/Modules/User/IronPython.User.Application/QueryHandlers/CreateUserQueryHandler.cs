@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using IronPython.User.Contracts;
+using IronPython.User.Contracts.DTOs;
 using IronPython.User.Contracts.Queries;
 using IronPython.User.Domain;
 using MediatR;

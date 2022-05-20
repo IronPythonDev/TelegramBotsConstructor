@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using IronPython.User.Contracts.DTOs;
+using MediatR;
 
 namespace IronPython.User.Contracts.Queries
 {

@@ -1,7 +1,8 @@
 ﻿using IronPython.Infrastructure.Aspects;
-using IronPython.User.Contracts;
+using IronPython.User.Contracts.DTOs;
 using IronPython.User.Contracts.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IronPython.Api.Controllers
@@ -17,13 +18,14 @@ namespace IronPython.Api.Controllers
 
         public IMediator Mediator { get; }
 
-        [HttpPost]
-        [LogException()]
-        public async Task<IActionResult> CreateUser(CreateUserDTO user)
+        [HttpGet]
+        [LogException]
+        [Authorize]
+        public async Task<IActionResult> GetUser()
         {
-            var response = await Mediator.Send(new CreateUserQuery(user));
+            var email = User.Identity!.Name;
 
-            return Ok(response);
+            return Ok(email);
         }
     }
 }
