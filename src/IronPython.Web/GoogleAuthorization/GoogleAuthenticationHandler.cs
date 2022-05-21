@@ -23,7 +23,7 @@ namespace IronPython.Api.GoogleAuthorization
                 if (!Request.Headers.ContainsKey("Authorization"))
                     return AuthenticateResult.NoResult();
 
-                var header = Request.Headers["Authorization"].ToString().Split("Bearer ").Last();
+                var header = Request.Headers["Authorization"].ToString();
 
                 var googleUser = await GoogleJsonWebSignature.ValidateAsync(header);
 

@@ -17,8 +17,9 @@ builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddMediatR(typeof(CreateUserQueryHandler).Assembly);
 builder.Services.AddAutoMapper(typeof(IronPython.User.Infrastructure.Mappers.UserProfile).Assembly);
 
-builder.Services.AddAuthentication(op => op.DefaultScheme = "GoogleAuthScheme")
-    .AddScheme<GoogleAuthenticationSchemeOptions, GoogleAuthenticationHandler>("GoogleAuthScheme", op => { });
+builder.Services
+    .AddAuthentication(op => op.DefaultScheme = AuthenticationBuilderExtensions.GoogleAuthScheme)
+    .AddIronGoogle();
 
 #region DbContexts
 var connectionString = builder.Configuration.GetConnectionString("Postgres");

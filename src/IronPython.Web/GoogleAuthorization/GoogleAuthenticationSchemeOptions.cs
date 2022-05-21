@@ -4,5 +4,6 @@ namespace IronPython.Api.GoogleAuthorization
 {
     public class GoogleAuthenticationSchemeOptions : AuthenticationSchemeOptions
     {
+
     }
 }
