@@ -29,7 +29,6 @@
     <ProjectReference Include="..\Framework\IronPython.Infrastructure\IronPython.Infrastructure.csproj" />
     <ProjectReference Include="..\Migrations\IronPython.Migrator.TelegramBots\IronPython.Migrator.TelegramBots.csproj" />
     <ProjectReference Include="..\Migrations\IronPython.Migrator.User\IronPython.Migrator.User.csproj" />
-    <ProjectReference Include="..\Modules\TelegramBots\IronPython.TelegramBots\IronPython.TelegramBots.csproj" />
     <ProjectReference Include="..\Modules\User\IronPython.User.Application\IronPython.User.Application.csproj" />
     <ProjectReference Include="..\Modules\User\IronPython.User.Infrastructure\IronPython.User.Infrastructure.csproj" />
   </ItemGroup>

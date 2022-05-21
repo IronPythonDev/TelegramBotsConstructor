@@ -9,11 +9,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.5" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\TelegramBots\IronPython.TelegramBot.Infrastructure\IronPython.TelegramBots.Infrastructure.csproj" />
+    <ProjectReference Include="..\IronPython.TelegramBot.Domain\IronPython.TelegramBots.Domain.csproj" />
   </ItemGroup>
 
 </Project>
