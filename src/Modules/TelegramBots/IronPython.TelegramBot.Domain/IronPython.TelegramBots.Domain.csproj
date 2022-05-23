@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\IronPython.Domain\IronPython.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

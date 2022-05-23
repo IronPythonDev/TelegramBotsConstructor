@@ -18,14 +18,16 @@ namespace IronPython.Api.Controllers
 
         public IMediator Mediator { get; }
 
-        [HttpGet]
-        [LogException]
         [Authorize]
-        public async Task<IActionResult> GetUser()
+        [HttpPost]
+        public async Task<IActionResult> CreateUser()
         {
-            var email = User.Identity!.Name;
+            var user = await Mediator.Send(new CreateUserQuery(new CreateUserDTO
+            {
+                Email = User.Identity!.Name!
+            }));
 
-            return Ok(email);
+            return Ok(user);
         }
     }
 }

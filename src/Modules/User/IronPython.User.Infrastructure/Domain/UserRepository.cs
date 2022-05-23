@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IronPython.User.Infrastructure.Domain
 {
-    public class UserRepository : IUserRepository, IDisposable
+    public class UserRepository : IUserRepository
 
     {
         public UserRepository(UserContext context)

@@ -1,5 +1,8 @@
 using IronPython.Api.GoogleAuthorization;
+using IronPython.TelegramBots.Application.QueryHandlers;
+using IronPython.TelegramBots.Domain;
 using IronPython.TelegramBots.Infrastructure;
+using IronPython.TelegramBots.Infrastructure.Domain;
 using IronPython.User.Application.QueryHandlers;
 using IronPython.User.Domain;
 using IronPython.User.Infrastructure;
@@ -13,9 +16,15 @@ builder.Services.AddHttpClient();
 builder.Services.AddControllers();
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<ITelegramBotsRepository, TelegramBotsRepository>();
 
-builder.Services.AddMediatR(typeof(CreateUserQueryHandler).Assembly);
-builder.Services.AddAutoMapper(typeof(IronPython.User.Infrastructure.Mappers.UserProfile).Assembly);
+builder.Services.AddMediatR(
+    typeof(CreateUserQueryHandler).Assembly,
+    typeof(CreateTelegramBotQueryHandler).Assembly);
+
+builder.Services.AddAutoMapper(
+    typeof(IronPython.User.Infrastructure.Mappers.UserProfile).Assembly,
+    typeof(IronPython.TelegramBots.Infrastructure.Mappers.TelegramBotsProfile).Assembly);
 
 builder.Services
     .AddAuthentication(op => op.DefaultScheme = AuthenticationBuilderExtensions.GoogleAuthScheme)
