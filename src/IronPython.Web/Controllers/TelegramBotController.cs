@@ -3,7 +3,6 @@ using IronPython.TelegramBots.Contracts.Queries;
 using IronPython.User.Contracts.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IronPython.Api.Controllers
