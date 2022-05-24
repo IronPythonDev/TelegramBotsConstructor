@@ -76,6 +76,9 @@ namespace IronPython.TelegramBots.Infrastructure.Domain
         public async Task<TelegramBotAction> GetActionById(Guid id) =>
             await Context.TelegramBotsActions.Include(p => p.Tasks).Include(p => p.Triggers).FirstAsync(p => p.Id == id);
 
+        public async Task<IList<TelegramBotAction>> GetActionsByTelegramBotId(Guid id) =>
+            await Context.TelegramBotsActions.Include(p => p.Tasks).Include(p => p.Triggers).Where(p => p.TelegramBotId == id).ToListAsync();
+
         public async Task<TelegramBot> GetByIdAsync(Guid id) =>
             await Context.TelegramBots.Include(p => p.Actions).FirstAsync(p => p.Id == id);
 

@@ -38,6 +38,13 @@ namespace IronPython.Api.Controllers
         }
 
         [Authorize]
+        [HttpGet("{telegramBotId}/action")]
+        public async Task<IActionResult> GetBotActions(Guid telegramBotId)
+        {
+            return Ok(await Mediator.Send(new GetTelegramBotActionsByBotIdQuery(telegramBotId)));
+        }
+
+        [Authorize]
         [HttpPost("{telegramBotId}/action")]
         public async Task<IActionResult> CreateBotAction([FromRoute] Guid telegramBotId, [FromBody] TelegramBotActionDTO actionDTO)
         {
