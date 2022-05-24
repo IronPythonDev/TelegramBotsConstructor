@@ -2,7 +2,10 @@ using IronPython.Api.GoogleAuthorization;
 using IronPython.TelegramBots.Application.QueryHandlers;
 using IronPython.TelegramBots.Domain;
 using IronPython.TelegramBots.Infrastructure;
+using IronPython.TelegramBots.Infrastructure.ActionTasks;
+using IronPython.TelegramBots.Infrastructure.ActionTriggers;
 using IronPython.TelegramBots.Infrastructure.Domain;
+using IronPython.TelegramBots.Infrastructure.Services;
 using IronPython.User.Application.QueryHandlers;
 using IronPython.User.Domain;
 using IronPython.User.Infrastructure;
@@ -14,6 +17,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
 builder.Services.AddControllers();
+
+builder.Services.AddSingleton<TriggerCache>((p) =>
+{
+    var cache = new TriggerCache(p);
+
+    cache.Load(typeof(UserMessageEqualTriggerHandler).Assembly);
+
+    return cache;
+});
+
+builder.Services.AddSingleton<TaskCache>((p) =>
+{
+    var cache = new TaskCache(p);
+
+    cache.Load(typeof(SendMessageTaskHandler).Assembly);
+
+    return cache;
+});
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<ITelegramBotsRepository, TelegramBotsRepository>();
