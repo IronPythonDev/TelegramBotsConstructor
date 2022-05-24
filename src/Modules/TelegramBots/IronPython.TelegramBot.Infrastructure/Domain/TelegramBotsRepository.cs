@@ -13,6 +13,15 @@ namespace IronPython.TelegramBots.Infrastructure.Domain
 
         public TelegramBotsContext Context { get; }
 
+        public async Task AddActionToTelegramBot(TelegramBot telegramBot, TelegramBotAction action)
+        {
+            action.TelegramBot = telegramBot;
+
+            await Context.TelegramBotsActions.AddAsync(action);
+
+            await Context.SaveChangesAsync();
+        }
+
         public async Task AddOwnerToTelegramBot(TelegramBot telegramBot, Guid ownerId)
         {
             await Context.TelegramBotsOwners.AddAsync(new TelegramBotOwner
@@ -20,6 +29,24 @@ namespace IronPython.TelegramBots.Infrastructure.Domain
                 TelegramBot = telegramBot,
                 OwnerId = ownerId,
             });
+
+            await Context.SaveChangesAsync();
+        }
+
+        public async Task AddTaskToAction(TelegramBotAction action, TelegramBotActionTask task)
+        {
+            task.TelegramBotAction = action;
+
+            await Context.TelegramBotsActionTasks.AddAsync(task);
+
+            await Context.SaveChangesAsync();
+        }
+
+        public async Task AddTriggerToAction(TelegramBotAction action, TelegramBotActionTrigger trigger)
+        {
+            trigger.TelegramBotAction = action;
+
+            await Context.TelegramBotsActionTriggers.AddAsync(trigger);
 
             await Context.SaveChangesAsync();
         }
@@ -45,6 +72,9 @@ namespace IronPython.TelegramBots.Infrastructure.Domain
             Context.Dispose();
             GC.SuppressFinalize(this);
         }
+
+        public async Task<TelegramBotAction> GetActionById(Guid id) =>
+            await Context.TelegramBotsActions.FirstAsync(p => p.Id == id);
 
         public async Task<TelegramBot> GetByIdAsync(Guid id) =>
             await Context.TelegramBots.FirstAsync(p => p.Id == id);

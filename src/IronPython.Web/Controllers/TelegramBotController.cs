@@ -28,6 +28,33 @@ namespace IronPython.Api.Controllers
             var newBot = await Mediator.Send(new CreateTelegramBotQuery(telegramBot, user.Id));
 
             return Ok(newBot);
-        } 
+        }
+
+        [Authorize]
+        [HttpPost("{telegramBotId}/action")]
+        public async Task<IActionResult> CreateBotAction([FromRoute] Guid telegramBotId, [FromBody] TelegramBotActionDTO actionDTO)
+        {
+            await Mediator.Send(new AddOrUpdateTelegramBotActionQuery(actionDTO, telegramBotId));
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("{telegramBotId}/action/{actionId}/trigger")]
+        public async Task<IActionResult> CreateBotActionTrigger([FromRoute] Guid telegramBotId, [FromRoute] Guid actionId, [FromBody] TelegramBotActionTriggerDTO triggerDTO)
+        {
+            await Mediator.Send(new AddOrUpdateTelegramBotActionTriggerQuery(triggerDTO, actionId));
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("{telegramBotId}/action/{actionId}/task")]
+        public async Task<IActionResult> CreateBotActionTask([FromRoute] Guid telegramBotId, [FromRoute] Guid actionId, [FromBody] TelegramBotActionTaskDTO taskDTO)
+        {
+            await Mediator.Send(new AddOrUpdateTelegramBotActionTaskQuery(taskDTO, actionId));
+
+            return Ok();
+        }
     }
 }

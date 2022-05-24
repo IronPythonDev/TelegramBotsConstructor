@@ -1,6 +1,10 @@
-﻿namespace IronPython.TelegramBots.Contracts.DTOs
+﻿using System.Text.Json;
+
+namespace IronPython.TelegramBots.Contracts.DTOs
 {
     public class TelegramBotActionTaskDTO
     {
+        public string Type { get; set; }
+        public JsonDocument Params { get; set; }
     }
 }

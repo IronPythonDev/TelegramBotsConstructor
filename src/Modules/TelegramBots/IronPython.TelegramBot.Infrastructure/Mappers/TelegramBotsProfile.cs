@@ -10,6 +10,15 @@ namespace IronPython.TelegramBots.Infrastructure.Mappers
         {
             CreateMap<TelegramBot, TelegramBotDTO>();
             CreateMap<TelegramBotDTO, TelegramBot>();
+
+            CreateMap<TelegramBotAction, TelegramBotActionDTO>();
+            CreateMap<TelegramBotActionDTO, TelegramBotAction>();
+
+            CreateMap<TelegramBotActionTask, TelegramBotActionTaskDTO>();
+            CreateMap<TelegramBotActionTaskDTO, TelegramBotActionTask>();
+
+            CreateMap<TelegramBotActionTrigger, TelegramBotActionTriggerDTO>();
+            CreateMap<TelegramBotActionTriggerDTO, TelegramBotActionTrigger>();
         }
     }
 }
