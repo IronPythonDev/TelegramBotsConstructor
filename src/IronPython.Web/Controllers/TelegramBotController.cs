@@ -20,6 +20,13 @@ namespace IronPython.Api.Controllers
         public IMediator Mediator { get; }
 
         [Authorize]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBot(Guid id)
+        {
+            return Ok(await Mediator.Send(new GetTelegramBotByIdQuery(id)));
+        }
+
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateBot(TelegramBotDTO telegramBot)
         {
