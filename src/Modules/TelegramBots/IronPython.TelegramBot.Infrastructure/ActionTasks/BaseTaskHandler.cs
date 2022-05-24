@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 
 namespace IronPython.TelegramBots.Infrastructure.ActionTasks
@@ -9,6 +11,6 @@ namespace IronPython.TelegramBots.Infrastructure.ActionTasks
         {
         }
 
-        public abstract Task Handle(Update update, JsonDocument @params);
+        public abstract Task Handle(Update update, ITelegramBotClient client, JsonDocument @params);
     }
 }

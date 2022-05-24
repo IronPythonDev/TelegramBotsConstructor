@@ -37,6 +37,25 @@ namespace IronPython.Api.Controllers
         }
 
         [Authorize]
+        [HttpPost("{id}/start")]
+        public async Task<IActionResult> StartBot(Guid id)
+        {
+            await Mediator.Send(new StartTelegramBotQuery(id));
+
+            return Ok();
+        }
+
+        [Authorize]
+        [HttpPost("{id}/stop")]
+        public async Task<IActionResult> StopBot(Guid id)
+        {
+            await Mediator.Send(new StopTelegramBotQuery(id));
+
+            return Ok();
+        }
+
+
+        [Authorize]
         [HttpGet("{telegramBotId}/action")]
         public async Task<IActionResult> GetBotActions(Guid telegramBotId)
         {

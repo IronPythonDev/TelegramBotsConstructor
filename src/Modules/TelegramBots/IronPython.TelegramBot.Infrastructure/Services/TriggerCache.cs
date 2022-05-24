@@ -11,14 +11,9 @@ namespace IronPython.TelegramBots.Infrastructure.Services
             ServiceProvider=serviceProvider;
         }
 
-        IDictionary<string, BaseTriggerHandler> Handlers = new Dictionary<string, BaseTriggerHandler>();
+        public IDictionary<string, BaseTriggerHandler> Handlers = new Dictionary<string, BaseTriggerHandler>();
 
         IServiceProvider ServiceProvider { get; }
-
-        public Task<BaseTriggerHandler> GetTrigger()
-        {
-            throw new NotImplementedException();
-        }
 
         public void Load(params Assembly[] assemblies)
         {

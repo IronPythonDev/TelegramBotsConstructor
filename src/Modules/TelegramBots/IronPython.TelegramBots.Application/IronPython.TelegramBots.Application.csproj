@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IronPython.TelegramBot.Domain\IronPython.TelegramBots.Domain.csproj" />
+    <ProjectReference Include="..\IronPython.TelegramBot.Infrastructure\IronPython.TelegramBots.Infrastructure.csproj" />
     <ProjectReference Include="..\IronPython.TelegramBots.Contracts\IronPython.TelegramBots.Contracts.csproj" />
   </ItemGroup>
 
